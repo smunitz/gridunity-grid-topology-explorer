@@ -2,6 +2,7 @@ let allNodes = [];
 let allLinks = [];
 let graph;
 
+// Load GeoJSON data and parse it into nodes and links
 fetch('grid_topology.geojson')
   .then(res => res.json())
   .then(geojson => {
@@ -34,6 +35,9 @@ fetch('grid_topology.geojson')
     allNodes = nodes;
     allLinks = links;
 
+    populateFilters(nodes);
+
+    // Set up the 3D graph visualization
     const regionColors = {
       "North": "#1f77b4",
       "Central": "#2ca02c",
@@ -45,6 +49,7 @@ fetch('grid_topology.geojson')
       "inactive": "#d62728"
     };
 
+    // Initialize the 3D graph
     graph = ForceGraph3D()(document.getElementById('3d-graph'))
       .graphData({ nodes, links })
       .linkWidth(() => 1)
@@ -67,6 +72,7 @@ fetch('grid_topology.geojson')
       );
   });
 
+// Apply filters based on dropdown selections
 function applyFilters() {
   const owner = document.getElementById('ownerFilter').value;
   const region = document.getElementById('regionFilter').value;
@@ -79,16 +85,41 @@ function applyFilters() {
   );
   const nodeIds = new Set(filteredNodes.map(n => n.id));
   const filteredLinks = allLinks.filter(l => {
-  const sourceId = typeof l.source === 'object' ? l.source.id : l.source;
-  const targetId = typeof l.target === 'object' ? l.target.id : l.target;
-  return nodeIds.has(sourceId) && nodeIds.has(targetId);
-});
+    const sourceId = typeof l.source === 'object' ? l.source.id : l.source;
+    const targetId = typeof l.target === 'object' ? l.target.id : l.target;
+    return nodeIds.has(sourceId) && nodeIds.has(targetId);
+  });
 
   if (graph) {
     graph.graphData({ nodes: filteredNodes, links: filteredLinks });
   }
 }
 
+// Add event listeners for filter changes
 ['ownerFilter', 'regionFilter', 'voltageFilter'].forEach(id => {
   document.getElementById(id).addEventListener('change', applyFilters);
 });
+
+// populate dropdown filters based on data
+function populateFilters(nodes) {
+  const ownerSelect = document.getElementById("ownerFilter");
+  const regionSelect = document.getElementById("regionFilter");
+  const voltageSelect = document.getElementById("voltageFilter");
+
+  const owners = [...new Set(nodes.map(n => n.owner))].sort();
+  const regions = [...new Set(nodes.map(n => n.region))].sort();
+  const voltages = [...new Set(nodes.map(n => n.voltage))].sort((a, b) => a - b);
+
+  function addOptions(select, values) {
+    values.forEach(v => {
+      const opt = document.createElement("option");
+      opt.value = v;
+      opt.textContent = v;
+      select.appendChild(opt);
+    });
+  }
+
+  addOptions(ownerSelect, owners);
+  addOptions(regionSelect, regions);
+  addOptions(voltageSelect, voltages);
+}

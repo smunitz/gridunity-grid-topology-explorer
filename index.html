@@ -6,29 +6,25 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div>
-      Owner:
-      <select id="ownerFilter"><option value="">All</option>
-        <option value="GridUnity">GridUnity</option>
-        <option value="Other">Other</option>
+    <div id="filters">
+      <label for="ownerFilter">Owner:</label>
+      <select id="ownerFilter">
+        <option value="">All</option>
       </select>
-      Region:
-      <select id="regionFilter"><option value="">All</option>
-        <option value="North">North</option>
-        <option value="Central">Central</option>
-        <option value="South">South</option>
+
+      <label for="regionFilter">Region:</label>
+      <select id="regionFilter">
+        <option value="">All</option>
       </select>
-      Voltage ≥
+
+      <label for="voltageFilter">Voltage ≥</label>
       <select id="voltageFilter">
         <option value="">Any</option>
-        <option value="69">69</option>
-        <option value="115">115</option>
-        <option value="230">230</option>
-        <option value="345">345</option>
-        <option value="500">500</option>
       </select>
     </div>
+
     <div id="3d-graph"></div>
+
     <script src="main.js"></script>
   </body>
 </html>

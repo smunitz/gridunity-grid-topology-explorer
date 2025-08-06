@@ -1,2 +1,31 @@
-body { margin: 0; }
-#3d-graph { width: 100vw; height: 100vh; }
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f7f9fb;
+}
+
+div#filters {
+  padding: 1rem;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+select {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  appearance: none;
+  cursor: pointer;
+}
+
+select:hover {
+  border-color: #888;
+}
+
+label {
+  margin-right: 6px;
+}
