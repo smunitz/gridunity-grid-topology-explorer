@@ -1,0 +1,20 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    { "type": "Feature", "properties": { "id": "S6", "name": "Dubhe", "type": "substation", "voltage": 230 }, "geometry": { "type": "Point", "coordinates": [-2, 3, 0] } },
+    { "type": "Feature", "properties": { "id": "S7", "name": "Merak", "type": "substation", "voltage": 345 }, "geometry": { "type": "Point", "coordinates": [-2, 0, 0] } },
+    { "type": "Feature", "properties": { "id": "S5", "name": "Phecda", "type": "substation", "voltage": 69 }, "geometry": { "type": "Point", "coordinates": [5, 0, 0] } },
+    { "type": "Feature", "properties": { "id": "S4", "name": "Megrez", "type": "substation", "voltage": 115 }, "geometry": { "type": "Point", "coordinates": [5, 3, 0] } },
+    { "type": "Feature", "properties": { "id": "S3", "name": "Alioth", "type": "substation", "voltage": 230 }, "geometry": { "type": "Point", "coordinates": [7, 4, 0.2] } },
+    { "type": "Feature", "properties": { "id": "S2", "name": "Mizar", "type": "substation", "voltage": 345 }, "geometry": { "type": "Point", "coordinates": [9, 5, 0.3] } },
+    { "type": "Feature", "properties": { "id": "S1", "name": "Alkaid", "type": "substation", "voltage": 500 }, "geometry": { "type": "Point", "coordinates": [11, 6, 0.4] } },
+
+    { "type": "Feature", "properties": { "id": "L1", "name": "Dubhe-Merak", "type": "line", "from": "S6", "to": "S7", "voltage": 230, "status": "active" }, "geometry": { "type": "LineString", "coordinates": [[-2,3,0],[-2,0,0]] } },
+    { "type": "Feature", "properties": { "id": "L2", "name": "Merak-Phecda", "type": "line", "from": "S7", "to": "S5", "voltage": 345, "status": "active" }, "geometry": { "type": "LineString", "coordinates": [[-2,0,0],[5,0,0]] } },
+    { "type": "Feature", "properties": { "id": "L3", "name": "Phecda-Megrez", "type": "line", "from": "S5", "to": "S4", "voltage": 69, "status": "active" }, "geometry": { "type": "LineString", "coordinates": [[5,0,0],[5,3,0]] } },
+    { "type": "Feature", "properties": { "id": "L4", "name": "Megrez-Dubhe", "type": "line", "from": "S4", "to": "S6", "voltage": 115, "status": "active" }, "geometry": { "type": "LineString", "coordinates": [[5,3,0],[-2,3,0]] } },
+    { "type": "Feature", "properties": { "id": "L5", "name": "Megrez-Alioth", "type": "line", "from": "S4", "to": "S3", "voltage": 230, "status": "maintenance" }, "geometry": { "type": "LineString", "coordinates": [[5,3,0],[7,4,0.2]] } },
+    { "type": "Feature", "properties": { "id": "L6", "name": "Alioth-Mizar", "type": "line", "from": "S3", "to": "S2", "voltage": 345, "status": "active" }, "geometry": { "type": "LineString", "coordinates": [[7,4,0.2],[9,5,0.3]] } },
+    { "type": "Feature", "properties": { "id": "L7", "name": "Mizar-Alkaid", "type": "line", "from": "S2", "to": "S1", "voltage": 500, "status": "active" }, "geometry": { "type": "LineString", "coordinates": [[9,5,0.3],[11,6,0.4]] } }
+  ]
+}
